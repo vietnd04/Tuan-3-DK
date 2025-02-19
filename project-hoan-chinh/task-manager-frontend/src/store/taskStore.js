@@ -1,4 +1,3 @@
-// src/store/taskStore.js
 import { defineStore } from 'pinia'
 import taskService from '../api/taskService'
 

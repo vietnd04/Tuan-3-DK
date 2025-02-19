@@ -1,14 +1,14 @@
 <template>
   <div class="container">
-    <h1>Danh sách công việc</h1>
+    <h1>Quản lý Công việc</h1>
     <TaskForm />
-    <div v-if="loading" class="loading">Đang tải...</div>
+    <div v-if="loading" class="status-message">Đang tải...</div>
     <div v-else>
       <ul class="task-list">
         <TaskItem v-for="task in tasks" :key="task.id" :task="task" />
       </ul>
     </div>
-    <div v-if="error" class="error">{{ error.message }}</div>
+    <div v-if="error" class="error-message">{{ error.message }}</div>
   </div>
 </template>
 
@@ -39,33 +39,38 @@ export default {
 
 <style scoped>
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 2rem auto;
-  padding: 1rem;
-  font-family: Arial, sans-serif;
+  padding: 1.5rem;
+  background-color: #fdfdfd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 h1 {
   text-align: center;
   color: #333;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .task-list {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
-.loading {
+.status-message {
   text-align: center;
+  color: #3498db;
   font-size: 1.2rem;
-  color: #555;
+  padding: 1rem 0;
 }
 
-.error {
-  color: red;
+.error-message {
   text-align: center;
-  margin-top: 1rem;
+  color: #e74c3c;
+  font-size: 1.1rem;
+  padding: 1rem 0;
 }
 </style>

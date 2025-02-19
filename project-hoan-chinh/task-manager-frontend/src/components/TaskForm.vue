@@ -1,7 +1,13 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <input v-model="title" type="text" placeholder="Nhập tên công việc" required />
-    <button type="submit">Thêm công việc</button>
+  <form @submit.prevent="handleSubmit" class="task-form">
+    <input
+      v-model="title"
+      type="text"
+      placeholder="Nhập tên công việc"
+      required
+      class="task-input"
+    />
+    <button type="submit" class="btn btn-add">Thêm công việc</button>
   </form>
 </template>
 
@@ -27,34 +33,43 @@ export default {
 </script>
 
 <style scoped>
-form {
+.task-form {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  gap: 0.5rem;
 }
 
-input[type="text"] {
+.task-input {
   flex: 1;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-right: 0.5rem;
+  padding: 0.8rem;
   font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s;
 }
 
-button {
-  padding: 0.75rem 1.5rem;
+.task-input:focus {
+  border-color: #3498db;
+}
+
+.btn {
+  padding: 0.8rem 1.2rem;
   border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-add {
   background-color: #3498db;
   color: #fff;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
 }
 
-button:hover {
+.btn-add:hover {
   background-color: #2980b9;
 }
 </style>

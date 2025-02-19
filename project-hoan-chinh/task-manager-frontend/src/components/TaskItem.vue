@@ -1,16 +1,20 @@
 <template>
-  <li>
-   
-    <div v-if="isEditing">
-      <input v-model="editedTitle" type="text" />
-      <button @click="submitUpdate">Lưu</button>
-      <button @click="cancelEdit">Hủy</button>
+  <li class="task-item">
+    <div v-if="isEditing" class="task-edit">
+      <input v-model="editedTitle" type="text" class="task-edit-input" />
+      <div class="btn-group">
+        <button @click="submitUpdate" class="btn btn-save">Lưu</button>
+        <button @click="cancelEdit" class="btn btn-cancel">Hủy</button>
+      </div>
     </div>
-   
-    <div v-else>
-      <span :class="{ completed: task.completed }">{{ task.title }}</span>
-      <button @click="enableEdit">Sửa</button>
-      <button @click="deleteTask">Xoá</button>
+    <div v-else class="task-view">
+      <span :class="{ completed: task.completed }" class="task-title">
+        {{ task.title }}
+      </span>
+      <div class="btn-group">
+        <button @click="enableEdit" class="btn btn-edit">Sửa</button>
+        <button @click="deleteTask" class="btn btn-delete">Xoá</button>
+      </div>
     </div>
   </li>
 </template>
@@ -64,58 +68,92 @@ export default {
 </script>
 
 <style scoped>
-li {
+.task-item {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  background: #f9f9f9;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  gap: 0.8rem;
 }
 
-div {
+.task-view,
+.task-edit {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-input[type="text"] {
+.task-title {
+  font-size: 1.1rem;
   flex: 1;
-  padding: 0.5rem;
-  margin-right: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }
 
-button {
-  margin-left: 0.5rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:nth-of-type(1) {
-  background-color: #3498db;
-  color: #fff;
-}
-
-button:nth-of-type(1):hover {
-  background-color: #2980b9;
-}
-
-button:nth-of-type(2) {
-  background-color: #e74c3c;
-  color: #fff;
-}
-
-button:nth-of-type(2):hover {
-  background-color: #c0392b;
-}
 .completed {
   text-decoration: line-through;
   color: #7f8c8d;
+}
+
+.task-edit-input {
+  flex: 1;
+  padding: 0.7rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.task-edit-input:focus {
+  border-color: #3498db;
+}
+
+.btn-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn {
+  padding: 0.5rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: #fff;
+}
+
+.btn-edit {
+  background-color: #f1c40f;
+}
+
+.btn-edit:hover {
+  background-color: #f39c12;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}
+
+.btn-save {
+  background-color: #2ecc71;
+}
+
+.btn-save:hover {
+  background-color: #27ae60;
+}
+
+.btn-cancel {
+  background-color: #95a5a6;
+}
+
+.btn-cancel:hover {
+  background-color: #7f8c8d;
 }
 </style>
